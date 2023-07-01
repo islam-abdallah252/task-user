@@ -1,0 +1,27 @@
+.details {
+  &__back {
+    margin-bottom: 31px;
+    button {
+      background: #142d4c;
+      width: 150px;
+      height: 40px;
+      border-radius: 7px;
+      color: #ececec;
+      outline: none;
+      border: 0px;
+      cursor: pointer;
+    }
+  }
+  &__header {
+    display: flex;
+    justify-content: start;
+    margin-bottom: 30px;
+    color: #385170;
+    .img-profile {
+      img {
+        margin-right: 10px;
+        border-radius: 8px;
+      }
+    }
+  }
+}

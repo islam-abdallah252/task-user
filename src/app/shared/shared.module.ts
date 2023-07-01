@@ -1,10 +1,10 @@
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FooterComponent, HeaderComponent } from './components';
+import { NgModule } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { FooterComponent, HeaderComponent } from './components';
 const sharedComponents = [HeaderComponent, FooterComponent];
 const materialModule = [
   MatToolbarModule,

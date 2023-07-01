@@ -1,6 +1,7 @@
 import { UsersService } from './../../services/users.service';
 import { Component, OnInit } from '@angular/core';
 import { IUser } from '../../interfaces/IUser';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-users-list',
@@ -9,6 +10,8 @@ import { IUser } from '../../interfaces/IUser';
 })
 export class UsersListComponent implements OnInit {
   users: IUser[] = {} as IUser[];
+  subscription: Subscription = new Subscription();
+
   configPagination: {
     total: number;
     page: number;
@@ -20,6 +23,7 @@ export class UsersListComponent implements OnInit {
     per_page: 6,
     total_pages: 12,
   };
+  usersFilter: string = '';
   constructor(private usersService: UsersService) {}
 
   ngOnInit() {
@@ -27,12 +31,14 @@ export class UsersListComponent implements OnInit {
   }
 
   getUsers(page = 1) {
-    this.usersService.getAll(page).subscribe((users: any) => {
-      if (users.data) {
-        this.users = users.data;
-        this.setConfigPagination(users);
-      }
-    });
+    this.subscription = this.usersService
+      .getAll(page)
+      .subscribe((users: any) => {
+        if (users.data) {
+          this.users = users.data;
+          this.setConfigPagination(users);
+        }
+      });
   }
 
   setConfigPagination(users: any) {
@@ -46,5 +52,8 @@ export class UsersListComponent implements OnInit {
   changePage(page: any) {
     console.log('page', page);
     this.getUsers(page.pageIndex + 1);
+  }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

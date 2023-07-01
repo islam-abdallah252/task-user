@@ -9,9 +9,7 @@ import { Router } from '@angular/router';
 })
 export class CardUserComponent implements OnInit {
   @Input() user: IUser = {} as IUser;
-  constructor(private router: Router) {
-    console.log('user', this.user);
-  }
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 

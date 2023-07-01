@@ -1,10 +1,30 @@
-<div class="cards">
-  <app-card *ngFor="let user of users" [user]="user"></app-card>
+<div class="users-list">
+  <div class="users-list__filter">
+    <div>
+      <mat-form-field class="example-full-width">
+        <mat-label>Filter By First Name:</mat-label>
+        <input matInput [(ngModel)]="usersFilter" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="users-list__cards" *ngIf="users.length">
+    <app-card
+      *ngFor="let user of users | filter : usersFilter : 'first_name'"
+      [user]="user"
+    ></app-card>
+    <div
+      class="users-list__cards__no-data-found"
+      *ngIf="(users | filter : usersFilter : 'first_name')?.length == 0"
+    >
+      <h5>No data found for keyword: '{{ usersFilter }}'</h5>
+    </div>
+  </div>
+  <mat-paginator
+    *ngIf="(users | filter : usersFilter : 'first_name')?.length"
+    [length]="configPagination.total"
+    [pageSize]="configPagination.per_page"
+    aria-label="Select page"
+    (page)="changePage($event)"
+  >
+  </mat-paginator>
 </div>
-<mat-paginator
-  [length]="configPagination.total"
-  [pageSize]="configPagination.per_page"
-  aria-label="Select page"
-  (page)="changePage($event)"
->
-</mat-paginator>

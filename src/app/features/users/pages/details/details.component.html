@@ -1,3 +1,23 @@
-<p>
-  details works!
-</p>
+<div class="details">
+  <div class="container">
+    <div class="details__back">
+      <button mat-raised-button color="primary" (click)="goToUsers()">
+        Back
+      </button>
+    </div>
+    <div class="details__header">
+      <div class="img-profile">
+        <img
+          src="{{ user.avatar }}"
+          alt="{{ user.first_name }} {{ user.last_name }}'s avatar"
+          width="450px"
+          height="450px"
+        />
+      </div>
+      <div class="header">
+        <h1><b>Full name:</b> {{ user.first_name }} {{ user.last_name }}</h1>
+        <h2><b>Email:</b> {{ user.email }}</h2>
+      </div>
+    </div>
+  </div>
+</div>
