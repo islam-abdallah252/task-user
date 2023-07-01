@@ -1,0 +1,10 @@
+<div class="cards">
+  <app-card *ngFor="let user of users" [user]="user"></app-card>
+</div>
+<mat-paginator
+  [length]="configPagination.total"
+  [pageSize]="configPagination.per_page"
+  aria-label="Select page"
+  (page)="changePage($event)"
+>
+</mat-paginator>

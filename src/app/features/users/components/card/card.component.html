@@ -1,0 +1,20 @@
+<div class="card">
+  <mat-card>
+    <mat-card-header>
+      <div class="img-profile">
+        <img
+          src="{{ user.avatar }}"
+          alt="{{ user.first_name }} {{ user.last_name }}'s avatar"
+          width="50px"
+          height="50px"
+        />
+      </div>
+      <div class="header">
+        <mat-card-title (click)="goToUser(user.id)"
+          >{{ user.first_name }} {{ user.last_name }}</mat-card-title
+        >
+        <mat-card-subtitle> {{ user.email }}</mat-card-subtitle>
+      </div>
+    </mat-card-header>
+  </mat-card>
+</div>

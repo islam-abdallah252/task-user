@@ -1,0 +1,13 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  gap: 1%;
+  margin-bottom: 80px;
+
+  app-card {
+    flex: 24%;
+    margin: 1rem;
+    margin-bottom: 0px;
+  }
+}

@@ -1,0 +1,16 @@
+<div class="header">
+  <mat-toolbar>
+    <div class="header__logo">
+      <a routerLink="/"><img src="https://picsum.photos/50/50" alt="logo" /></a>
+    </div>
+    <div class="profile">
+      <img src="https://picsum.photos/50/50" alt="logo" />
+      <button mat-button [matMenuTriggerFor]="menu">Islam Abdallah</button>
+      <mat-icon>chevron_left</mat-icon>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="openSnackBar()">Profile</button>
+        <button mat-menu-item (click)="openSnackBar()">LogOut</button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+</div>
