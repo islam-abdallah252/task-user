@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {}
 
   openSnackBar(
-    message: string = 'We are working on a new feature that will allow you to soon as we can'
+    message: string = 'We are working on a new feature that will allow to you soon as we can'
   ) {
     this.snackBar.open(message, '', {
       duration: 1000,

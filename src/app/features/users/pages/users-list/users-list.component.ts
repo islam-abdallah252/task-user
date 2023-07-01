@@ -30,9 +30,9 @@ export class UsersListComponent implements OnInit {
     this.getUsers();
   }
 
-  getUsers(page = 1) {
+  getUsers(page = 1, newRequest = false) {
     this.subscription = this.usersService
-      .getAll(page)
+      .getAll(page, newRequest)
       .subscribe((users: any) => {
         if (users.data) {
           this.users = users.data;
@@ -50,8 +50,8 @@ export class UsersListComponent implements OnInit {
     };
   }
   changePage(page: any) {
-    console.log('page', page);
-    this.getUsers(page.pageIndex + 1);
+    this.configPagination.page = page.pageIndex;
+    this.getUsers(page.pageIndex + 1, true);
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
