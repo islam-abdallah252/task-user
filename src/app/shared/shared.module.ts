@@ -4,13 +4,20 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { FooterComponent, HeaderComponent } from './components';
-const sharedComponents = [HeaderComponent, FooterComponent];
+import {
+  FooterComponent,
+  HeaderComponent,
+  LoadingComponent,
+} from './components';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
+const sharedComponents = [HeaderComponent, FooterComponent, LoadingComponent];
 const materialModule = [
   MatToolbarModule,
   MatMenuModule,
   MatSnackBarModule,
   MatIconModule,
+  MatProgressSpinnerModule,
 ];
 
 @NgModule({

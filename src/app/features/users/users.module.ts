@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { UsersComponent } from './users.component';
 import { UsersRoutes } from './users.routing';
 import { CardUserModule } from './components/card/card.module';
-import { UsersListComponent } from './pages';
+import { DetailsComponent, UsersListComponent } from './pages';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from '@SharedModule/pipes/filter.pipe';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { SharedModule } from '@SharedModule/shared.module';
 
 const materialModule = [MatPaginatorModule, MatInputModule, MatButtonModule];
 @NgModule({
@@ -16,6 +17,7 @@ const materialModule = [MatPaginatorModule, MatInputModule, MatButtonModule];
     UsersComponent,
     UsersComponent,
     UsersListComponent,
+    DetailsComponent,
     FilterPipe,
   ],
   imports: [
@@ -23,6 +25,7 @@ const materialModule = [MatPaginatorModule, MatInputModule, MatButtonModule];
     UsersRoutes,
     FormsModule,
     CardUserModule,
+    SharedModule,
     ...materialModule,
   ],
   exports: [UsersComponent, CardUserModule],

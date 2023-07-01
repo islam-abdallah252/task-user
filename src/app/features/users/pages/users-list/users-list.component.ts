@@ -24,6 +24,7 @@ export class UsersListComponent implements OnInit {
     total_pages: 12,
   };
   usersFilter: string = '';
+  loading: boolean = false;
   constructor(private usersService: UsersService) {}
 
   ngOnInit() {
@@ -31,14 +32,18 @@ export class UsersListComponent implements OnInit {
   }
 
   getUsers(page = 1, newRequest = false) {
-    this.subscription = this.usersService
-      .getAll(page, newRequest)
-      .subscribe((users: any) => {
-        if (users.data) {
-          this.users = users.data;
-          this.setConfigPagination(users);
-        }
-      });
+    (this.loading = true),
+      (this.subscription = this.usersService
+        .getAll(page, newRequest)
+        .subscribe((users: any) => {
+          setTimeout(() => {
+            this.loading = false;
+            if (users.data) {
+              this.users = users.data;
+              this.setConfigPagination(users);
+            }
+          }, 1000);
+        }));
   }
 
   setConfigPagination(users: any) {

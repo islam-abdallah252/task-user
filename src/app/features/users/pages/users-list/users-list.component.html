@@ -7,7 +7,7 @@
       </mat-form-field>
     </div>
   </div>
-  <div class="users-list__cards" *ngIf="users.length">
+  <div class="users-list__cards" *ngIf="users.length && !loading">
     <app-card
       *ngFor="let user of users | filter : usersFilter : 'first_name'"
       [user]="user"
@@ -19,6 +19,7 @@
       <h5>No data found for keyword: '{{ usersFilter }}'</h5>
     </div>
   </div>
+  <app-loading *ngIf="loading"></app-loading>
   <mat-paginator
     *ngIf="(users | filter : usersFilter : 'first_name')?.length"
     [length]="configPagination.total"

@@ -12,6 +12,8 @@ import { Subscription } from 'rxjs';
 export class DetailsComponent implements OnInit, OnDestroy {
   user: IUser = {} as IUser;
   subscription: Subscription = new Subscription();
+  loading: boolean = false;
+
   constructor(
     private usersService: UsersService,
     private route: ActivatedRoute
@@ -27,10 +29,14 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   getUser(id: any) {
+    this.loading = true;
     this.subscription = this.usersService.getOne(id).subscribe((users: any) => {
-      if (users.data) {
-        this.user = users.data;
-      }
+      setTimeout(() => {
+        this.loading = false;
+        if (users.data) {
+          this.user = users.data;
+        }
+      }, 1000);
     });
   }
   goToUsers() {

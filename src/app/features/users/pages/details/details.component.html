@@ -1,5 +1,5 @@
 <div class="details">
-  <div class="container">
+  <div class="container" *ngIf="!loading">
     <div class="details__back">
       <button mat-raised-button color="primary" (click)="goToUsers()">
         Back
@@ -20,4 +20,5 @@
       </div>
     </div>
   </div>
+  <app-loading *ngIf="loading"></app-loading>
 </div>
