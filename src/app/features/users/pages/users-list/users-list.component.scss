@@ -1,23 +1,5 @@
 .users-list {
-  &__filter {
-    mat-form-field {
-      ::ng-deep {
-        width: 27%;
 
-        min-width: 350px;
-        margin-inline-start: 15px;
-
-        .mat-mdc-text-field-wrapper {
-          background: #ececec;
-        }
-        label,
-        input {
-          color: #424242;
-        }
-        --mat-select-placeholder-text-color: #424242;
-      }
-    }
-  }
   &__cards {
     display: flex;
     flex-wrap: wrap;
@@ -30,10 +12,12 @@
       margin: 1rem;
       margin-bottom: 0px;
     }
+
     &__no-data-found {
       width: 100%;
       text-align: center;
       margin-top: 74px;
+
       h5 {
         font-size: 25px;
       }

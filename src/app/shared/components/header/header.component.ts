@@ -1,5 +1,20 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Inject,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {
+  fromEvent,
+  filter,
+  debounceTime,
+  distinctUntilChanged,
+  tap,
+  map,
+} from 'rxjs';
+import { UsersService } from 'src/app/features/users/services/users.service';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +22,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(public snackBar: MatSnackBar) {}
+  @ViewChild('inputFilter') inputFilter!: ElementRef;
+
+  constructor(
+    public snackBar: MatSnackBar,
+    private usersService: UsersService
+  ) {}
 
   ngOnInit() {}
 
@@ -18,5 +38,19 @@ export class HeaderComponent implements OnInit {
       duration: 1000,
       verticalPosition: 'top',
     });
+  }
+
+  ngAfterViewInit() {
+    // server-side search
+    fromEvent(this.inputFilter.nativeElement, 'keyup')
+      .pipe(
+        filter(Boolean),
+        debounceTime(250),
+        map((event: any) => event.target.value),
+        distinctUntilChanged()
+      )
+      .subscribe((res) => {
+        this.usersService.searchKeyWord.next(res);
+      });
   }
 }

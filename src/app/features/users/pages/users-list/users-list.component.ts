@@ -28,22 +28,49 @@ export class UsersListComponent implements OnInit {
   constructor(private usersService: UsersService) {}
 
   ngOnInit() {
-    this.getUsers();
+    this.usersService.searchKeyWord.subscribe((value: any) => {
+      if (value != '') {
+        this.usersFilter = value;
+        this.search(value);
+      } else {
+        this.getUsers();
+      }
+    });
   }
 
   getUsers(page = 1, newRequest = false) {
-    (this.loading = true),
-      (this.subscription = this.usersService
-        .getAll(page, newRequest)
-        .subscribe((users: any) => {
-          setTimeout(() => {
-            this.loading = false;
-            if (users.data) {
-              this.users = users.data;
-              this.setConfigPagination(users);
-            }
-          }, 1000);
-        }));
+    this.loading = true;
+    this.subscription = this.usersService
+      .getAll(page, newRequest)
+      .subscribe((users: any) => {
+        setTimeout(() => {
+          this.loading = false;
+          if (users.data) {
+            this.users = users.data;
+            this.setConfigPagination(users);
+          }
+        }, 1000);
+      });
+  }
+
+  search(keyword: any) {
+    this.loading = true;
+    this.subscription = this.usersService.searchInUsers(keyword).subscribe({
+      next: (suc) => {
+        setTimeout(() => {
+          this.loading = false;
+          if (suc.data) {
+            this.users = [];
+            this.users.push(suc.data);
+            this.setConfigPagination(suc);
+          }
+        }, 1000);
+      },
+      error: (err) => {
+        this.users = [];
+        this.loading = false;
+      },
+    });
   }
 
   setConfigPagination(users: any) {

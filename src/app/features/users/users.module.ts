@@ -7,11 +7,10 @@ import { DetailsComponent, UsersListComponent } from './pages';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from '@SharedModule/pipes/filter.pipe';
-import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from '@SharedModule/shared.module';
 
-const materialModule = [MatPaginatorModule, MatInputModule, MatButtonModule];
+const materialModule = [MatPaginatorModule, MatButtonModule];
 @NgModule({
   declarations: [
     UsersComponent,

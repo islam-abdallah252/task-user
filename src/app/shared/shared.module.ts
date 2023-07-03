@@ -1,3 +1,4 @@
+import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,6 +11,7 @@ import {
   LoadingComponent,
 } from './components';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FormsModule } from '@angular/forms';
 
 const sharedComponents = [HeaderComponent, FooterComponent, LoadingComponent];
 const materialModule = [
@@ -18,6 +20,8 @@ const materialModule = [
   MatSnackBarModule,
   MatIconModule,
   MatProgressSpinnerModule,
+  MatInputModule,
+  FormsModule,
 ];
 
 @NgModule({

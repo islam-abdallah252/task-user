@@ -5,6 +5,14 @@
         ><img src="https://picsum.photos/50/50" alt="logo" /> Name Company</a
       >
     </div>
+    <div class="header__filter">
+      <div>
+        <mat-form-field class="example-full-width">
+          <mat-label>Filter By First Name:</mat-label>
+          <input matInput #inputFilter />
+        </mat-form-field>
+      </div>
+    </div>
     <div class="profile">
       <img src="https://picsum.photos/50/50" alt="logo" />
       <button mat-button [matMenuTriggerFor]="menu">Islam Abdallah</button>
